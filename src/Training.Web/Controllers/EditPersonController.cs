@@ -29,12 +29,14 @@ namespace Training.Web.Controllers
             return View(personen.ToArray());
         }
 
+        [Authorize]
         public ActionResult Create()
         {
             return View(new EditPersonCreateModel());
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Create(EditPersonCreateModel model)
         {
             if (!ModelState.IsValid)
@@ -53,6 +55,7 @@ namespace Training.Web.Controllers
             return DbContext.Personen.SingleOrDefault(p => p.Id == id);
         }
 
+        [Authorize]
         public ActionResult Edit(int id)
         {
             var person = FindPerson(id).MapTo<EditPersonEditModel>();
@@ -62,6 +65,7 @@ namespace Training.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Edit(int id, EditPersonEditModel model)
         {
             if (!ModelState.IsValid)
@@ -86,6 +90,7 @@ namespace Training.Web.Controllers
             return View(person);
         }
 
+        [Authorize]
         public ActionResult Delete(int id)
         {
             var person = FindPerson(id).MapTo<EditPersonDeleteModel>();
@@ -96,6 +101,7 @@ namespace Training.Web.Controllers
 
         [HttpPost]
         [ActionName("Delete")]
+        [Authorize]
         public ActionResult DeletePost(int id)
         {
             var person = FindPerson(id);

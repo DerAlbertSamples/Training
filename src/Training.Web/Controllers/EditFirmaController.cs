@@ -15,12 +15,14 @@ namespace Training.Web.Controllers
             return View(DbContext.Firmen.Project().ToArray<EditFirmaIndexModel>());
         }
 
+        [Authorize]
         public ActionResult Create()
         {
             return View(new EditFirmaCreateModel());
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Create(EditFirmaCreateModel model)
         {
             if (!ModelState.IsValid)
@@ -43,6 +45,8 @@ namespace Training.Web.Controllers
                 DbContext.Firmen.Project().To<EditFirmaDetailsModel>()
                          .SingleOrDefault(f => f.Id == id);
         }
+
+        [Authorize]
         public ActionResult Edit(int id)
         {
             var firma = FindFirma(id);
@@ -53,6 +57,7 @@ namespace Training.Web.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult Edit(int id, EditFirmaEditModel model)
         {
             if (!ModelState.IsValid)
@@ -77,6 +82,7 @@ namespace Training.Web.Controllers
             return View(firma.MapTo<EditFirmaDetailsModel>());
         }
 
+        [Authorize]
         public ActionResult Delete(int id)
         {
             var firma = FindFirma(id);
@@ -88,6 +94,7 @@ namespace Training.Web.Controllers
 
         [HttpPost]
         [ActionName("Delete")]
+        [Authorize]
         public ActionResult DeletePost(int id)
         {
             var firma = FindFirma(id);
