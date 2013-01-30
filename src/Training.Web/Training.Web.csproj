@@ -41,6 +41,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.2.2.1-ci9001\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetOpenAuth.AspNet, Version=4.2.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\DotNetOpenAuth.AspNet.4.2.1.13026\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
@@ -154,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DatabaseConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -174,12 +178,20 @@
     <Compile Include="Entities\Firma.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\Position.cs" />
+    <Compile Include="Extensions\MappingHelper.cs" />
     <Compile Include="Extensions\TableSortExtensions.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Mappings\ComponentMappingProfile.cs" />
+    <Compile Include="Infrastructure\Mappings\PersonMappingProfile.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\EditPerson\EditPersonCreateModel.cs" />
+    <Compile Include="Models\EditPerson\EditPersonDeleteModel.cs" />
+    <Compile Include="Models\EditPerson\EditPersonDetailsModel.cs" />
+    <Compile Include="Models\EditPerson\EditPersonEditModel.cs" />
+    <Compile Include="Models\EditPerson\EditPersonIndexModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

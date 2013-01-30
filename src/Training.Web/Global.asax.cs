@@ -21,6 +21,7 @@ namespace Training.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
             DatabaseConfig.Configure();
+            AutoMapperConfig.Configure();
         }
     }
 }

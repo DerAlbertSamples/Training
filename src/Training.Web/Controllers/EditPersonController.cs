@@ -3,6 +3,8 @@ using System.Linq;
 using System.Web.Mvc;
 using Training.Web.Data;
 using Training.Web.Entities;
+using Training.Web.Models;
+using Training.Web.Extensions;
 
 namespace Training.Web.Controllers
 {
@@ -29,15 +31,16 @@ namespace Training.Web.Controllers
 
         public ActionResult Create()
         {
-            return View(new Person());
+            return View(new EditPersonCreateModel());
         }
 
         [HttpPost]
-        public ActionResult Create(Person person)
+        public ActionResult Create(EditPersonCreateModel model)
         {
             if (!ModelState.IsValid)
-                return View(person);
+                return View(model);
 
+            var person = model.MapTo<Person>();
             DbContext.Personen.Add(person);
             DbContext.SaveChanges();
 
@@ -52,14 +55,14 @@ namespace Training.Web.Controllers
 
         public ActionResult Edit(int id)
         {
-            var person = FindPerson(id);
+            var person = FindPerson(id).MapTo<EditPersonEditModel>();
             if (person == null)
                 return new HttpNotFoundResult();
             return View(person);
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, Person model)
+        public ActionResult Edit(int id, EditPersonEditModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
@@ -78,7 +81,7 @@ namespace Training.Web.Controllers
 
         public ActionResult Details(int id)
         {
-            var person = FindPerson(id);
+            var person = FindPerson(id).MapTo<EditPersonDetailsModel>();
             if (person == null)
                 return new HttpNotFoundResult();
             return View(person);
@@ -86,7 +89,7 @@ namespace Training.Web.Controllers
 
         public ActionResult Delete(int id)
         {
-            var person = FindPerson(id);
+            var person = FindPerson(id).MapTo<EditPersonDeleteModel>();
             if (person == null)
                 return new HttpNotFoundResult();
             return View(person);

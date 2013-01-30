@@ -1,24 +1,20 @@
 ﻿
 /* Formatierung der Details */
-div.display-label {
+div.display-label, div.editor-label {
     font-weight: bold;
     display: block;
     width: 10em;
     float: left;
 }
 
-div.display-field {
+div.display-field, div.editor-field {
     margin-left: 10em;
     display: block;
 }
 
-div.display-label:after { content: ":"; }
+div.display-label:after, div.editor-label label:after { content: ":"; }
 
-div.display-field:after { content: '\00A0'; }
-
-div.display-label ul {
-    clear: both;
-}
+div.display-field:after, div.editor-label:after { content: '\00A0'; }
 
 /* Unterstreichen der Links im Table Header für die Sortierung entfernen */
 th a:link, th a:visited, th a:active, th a:hover {
