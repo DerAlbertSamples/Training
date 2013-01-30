@@ -11,7 +11,7 @@ namespace Training.Web.Entities
             Contact = new Contact();
         }
 
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         [Required]
         [StringLength(16)]
