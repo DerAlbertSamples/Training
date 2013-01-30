@@ -1,0 +1,13 @@
+﻿div.display-label {
+    font-weight: bold;
+    display: block;
+    width: 10em;
+    float: left;
+}
+div.display-label:after {
+    content: ":";
+}
+
+div.display-field:after {
+    content: '\00A0';
+}
