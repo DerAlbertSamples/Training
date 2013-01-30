@@ -17,5 +17,12 @@ namespace Training.Web.Controllers
         {
             get { return dbContext.Value; }
         }
+
+        protected override void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+            base.OnActionExecuted(filterContext);
+            if (dbContext.IsValueCreated)
+                dbContext.Value.Dispose();
+        }
     }
 }
