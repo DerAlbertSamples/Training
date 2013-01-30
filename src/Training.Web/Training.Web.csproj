@@ -156,6 +156,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionFilters\DontValidateAntiforgeryTokenAttribute.cs" />
+    <Compile Include="ActionFilters\ValidateAntiForgeryTokenFilter.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
