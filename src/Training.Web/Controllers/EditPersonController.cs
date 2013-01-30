@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Training.Web.Data;
@@ -8,9 +9,34 @@ namespace Training.Web.Controllers
 {
     public class EditPersonController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string property = null, string direction = "asc")
         {
-            return View(EntityStore.Current.Personen);
+            ViewBag.Sort = property;
+            ViewBag.SortDirection = direction;
+
+            var personen = EntityStore.Current.Personen;
+            switch (property)
+            {
+                case "Anrede":
+                    personen = Order(personen, p => p.Anrede, direction);
+                    break;
+                case "Vorname":
+                    personen = Order(personen, p => p.Vorname, direction);
+                    break;
+                case "Nachname":
+                    personen = Order(personen, p => p.Nachname, direction);
+                    break;
+            }
+            return View(personen);
+        }
+
+        static IEnumerable<Person> Order(IEnumerable<Person> personen,
+                                         Func<Person, string> selector,
+                                         string direction)
+        {
+            return direction == "asc"
+                       ? personen.OrderBy(selector)
+                       : personen.OrderByDescending(selector);
         }
 
         public ActionResult Create()

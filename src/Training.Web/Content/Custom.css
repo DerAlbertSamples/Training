@@ -1,13 +1,32 @@
-﻿div.display-label {
+﻿
+/* Formatierung der Details */
+div.display-label {
     font-weight: bold;
     display: block;
     width: 10em;
     float: left;
 }
-div.display-label:after {
-    content: ":";
+
+div.display-label:after { content: ":"; }
+
+div.display-field:after { content: '\00A0'; }
+
+
+/* Unterstreichen der Links im Table Header für die Sortierung entfernen */
+th a:link, th a:visited, th a:active, th a:hover {
+    text-decoration: none;
 }
 
-div.display-field:after {
-    content: '\00A0';
+/* Anzeige der Sortierung  korrigieren */
+
+th a, th a {
+    margin-right: 2.0em;
+}
+
+th.asc a:after, th.desc a:after {
+    top: 0.25em;
+}
+
+th.asc a, th.desc a {
+    padding-right: 1.0em;
 }
