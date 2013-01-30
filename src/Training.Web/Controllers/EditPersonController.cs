@@ -21,6 +21,9 @@ namespace Training.Web.Controllers
         [HttpPost]
         public ActionResult Create(Person person)
         {
+            if (!ModelState.IsValid)
+                return View(person);
+
             EntityStore.Current.Add(person);
             return RedirectToAction("Index");
         }
@@ -42,6 +45,9 @@ namespace Training.Web.Controllers
         [HttpPost]
         public ActionResult Edit(int id, Person model)
         {
+            if (!ModelState.IsValid)
+                return View(model);
+
             var person = FindPerson(id);
             if (person == null)
                 return new HttpNotFoundResult();
