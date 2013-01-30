@@ -7,6 +7,35 @@ namespace Training.Web.Models
 {
     public class EditFirmaDetailsModel
     {
+        public class AbteilungModel
+        {
+            public AbteilungModel()
+            {
+                Personen = new List<PersonModel>();
+            }
+
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public IEnumerable<PersonModel> Personen { get; set; }
+        }
+
+        public class PersonModel
+        {
+            public int Id { get; set; }
+            public string Vorname { get; set; }
+            public string Nachname { get; set; }
+
+            public string Vollstaendig
+            {
+                get { return Nachname+ ", " + Vorname; }
+            }
+        }
+
+        public EditFirmaDetailsModel()
+        {
+            Abteilungen = new List<AbteilungModel>();
+        }
+
         public int Id { get; private set; }
 
         [StringLength(64)]
@@ -18,6 +47,6 @@ namespace Training.Web.Models
 
         public Adresse Adresse { get; set; }
         public Contact Contact { get; set; }
-        public virtual IEnumerable<Abteilung> Abteilungen { get; private set; }
+        public virtual IEnumerable<AbteilungModel> Abteilungen { get; set; }
     }
 }

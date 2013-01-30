@@ -40,9 +40,8 @@ namespace Training.Web.Controllers
         EditFirmaDetailsModel FindFirmaComplete(int id)
         {
             return
-                DbContext.Firmen.Include("Abteilungen.Personen")
-                         .SingleOrDefault(f => f.Id == id)
-                         .MapTo<EditFirmaDetailsModel>();
+                DbContext.Firmen.Project().To<EditFirmaDetailsModel>()
+                         .SingleOrDefault(f => f.Id == id);
         }
         public ActionResult Edit(int id)
         {

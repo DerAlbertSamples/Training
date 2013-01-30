@@ -14,6 +14,10 @@ namespace Training.Web.Infrastructure.Mappings
             CreateMap<Firma, EditFirmaDeleteModel>();
             CreateMap<Firma, EditFirmaDetailsModel>();
 
+            CreateMap<Abteilung, EditFirmaDetailsModel.AbteilungModel>();
+            CreateMap<Person, EditFirmaDetailsModel.PersonModel>()
+                .ForMember(d => d.Vollstaendig, c => c.Ignore());
+
             CreateMap<EditFirmaCreateModel, Firma>()
                 .ForMember(d => d.Id, c => c.Ignore())
                 .ForMember(d => d.Adresse, c => c.Ignore())
