@@ -158,6 +158,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Entities\Abteilung.cs" />
+    <Compile Include="Entities\Adresse.cs" />
+    <Compile Include="Entities\Contact.cs" />
+    <Compile Include="Entities\Dokument.cs" />
+    <Compile Include="Entities\Firma.cs" />
+    <Compile Include="Entities\Person.cs" />
+    <Compile Include="Entities\Position.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
