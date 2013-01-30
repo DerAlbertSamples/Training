@@ -22,6 +22,7 @@ namespace Training.Web
             AuthConfig.RegisterAuth();
             DatabaseConfig.Configure();
             AutoMapperConfig.Configure();
+            ValidatorConfig.Configure(ModelValidatorProviders.Providers);
         }
     }
 }

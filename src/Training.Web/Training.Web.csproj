@@ -164,6 +164,7 @@
     <Compile Include="App_Start\DatabaseConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\ValidatorConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\EditFirmaController.cs" />
@@ -189,6 +190,8 @@
     <Compile Include="Infrastructure\Mappings\ComponentMappingProfile.cs" />
     <Compile Include="Infrastructure\Mappings\FirmaMappingProfile.cs" />
     <Compile Include="Infrastructure\Mappings\PersonMappingProfile.cs" />
+    <Compile Include="Infrastructure\ValidatorProviders\AdresseModelValidator.cs" />
+    <Compile Include="Infrastructure\ValidatorProviders\TrainingModelValidatorProvider.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\EditFirma\EditFirmaCreateModel.cs" />
     <Compile Include="Models\EditFirma\EditFirmaDeleteModel.cs" />

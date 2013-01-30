@@ -30,6 +30,22 @@
             @Html.EditorFor(model => model.Name2)
             @Html.ValidationMessageFor(model => model.Name2)
         </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Adresse)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Adresse)
+            @Html.ValidationMessageFor(model => model.Adresse)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contact)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Contact)
+            @Html.ValidationMessageFor(model => model.Contact)
+        </div>
+
 
         <p>
             <input type="submit" value="Save" />
