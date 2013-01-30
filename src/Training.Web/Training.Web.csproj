@@ -172,6 +172,7 @@
     <Compile Include="Entities\Firma.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\Position.cs" />
+    <Compile Include="Extensions\TableSortExtensions.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

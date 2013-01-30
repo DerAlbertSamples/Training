@@ -2,18 +2,6 @@
 
 @{
     ViewBag.Title = "Index";
-
-    ViewData["class" + ViewBag.Sort] = ViewBag.SortDirection;
-
-    foreach (var propertyInfo  in Model.GetType().GetProperties())
-    {
-        ViewData["sort" + propertyInfo.Name] = "asc";
-    }
-
-    if (ViewBag.SortDirection == "asc")
-    {
-        ViewData["sort" + ViewBag.Sort] = "desc";
-    }
 }
 }
 
@@ -24,18 +12,9 @@
 </p>
 <table>
     <tr>
-        <th class="@ViewBag.classAnrede">
-            @Html.ActionLink(Html.DisplayNameFor(p => p.Anrede).ToString(),
-                             "Index", new {property = "Anrede", direction = ViewBag.sortAnrede})
-        </th>
-        <th class="@ViewBag.classVorname">
-            @Html.ActionLink(Html.DisplayNameFor(p => p.Vorname).ToString(),
-                             "Index", new {property = "Vorname", direction = ViewBag.sortVorname})
-        </th>
-        <th class="@ViewBag.classNachname">
-            @Html.ActionLink(Html.DisplayNameFor(p => p.Nachname).ToString(),
-                             "Index", new {property = "Nachname", direction = ViewBag.sortNachname})
-        </th>
+        @Html.TableSortLink(p => p.Anrede, "Index")
+        @Html.TableSortLink(p => p.Vorname, "Index")
+        @Html.TableSortLink(p => p.Nachname, "Index")
         <th></th>
     </tr>
 

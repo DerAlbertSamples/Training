@@ -10,9 +10,6 @@ namespace Training.Web.Controllers
     {
         public ActionResult Index(string property = null, string direction = "asc")
         {
-            ViewBag.Sort = property;
-            ViewBag.SortDirection = direction;
-
             var personen = EntityStore.Current.Personen;
             switch (property)
             {
