@@ -35,6 +35,7 @@ namespace Training.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(EditPersonCreateModel model)
         {
             if (!ModelState.IsValid)
@@ -62,6 +63,7 @@ namespace Training.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, EditPersonEditModel model)
         {
             if (!ModelState.IsValid)
@@ -96,6 +98,7 @@ namespace Training.Web.Controllers
 
         [HttpPost]
         [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
         {
             var person = FindPerson(id);

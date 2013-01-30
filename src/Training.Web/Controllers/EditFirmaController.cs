@@ -21,6 +21,7 @@ namespace Training.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(EditFirmaCreateModel model)
         {
             if (!ModelState.IsValid)
@@ -53,6 +54,7 @@ namespace Training.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, EditFirmaEditModel model)
         {
             if (!ModelState.IsValid)
@@ -88,6 +90,7 @@ namespace Training.Web.Controllers
 
         [HttpPost]
         [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
         {
             var firma = FindFirma(id);
