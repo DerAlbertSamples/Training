@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using Training.Web.Entities;
@@ -9,7 +10,7 @@ namespace Training.Web.Controllers
     {
         public ActionResult Index()
         {
-            return View(DbContext.Firmen);
+            return View(DbContext.Firmen.ToArray());
         }
 
         public ActionResult Create()
@@ -31,6 +32,11 @@ namespace Training.Web.Controllers
         Firma FindFirma(int id)
         {
             return DbContext.Firmen.SingleOrDefault(f => f.Id == id);
+        }
+
+        Firma FindFirmaComplete(int id)
+        {
+            return DbContext.Firmen.Include("Abteilungen.Personen").SingleOrDefault(f => f.Id == id);
         }
 
         public ActionResult Edit(int id)
@@ -59,7 +65,7 @@ namespace Training.Web.Controllers
 
         public ActionResult Details(int id)
         {
-            var firma = FindFirma(id);
+            var firma = FindFirmaComplete(id);
             if (firma == null)
                 return new HttpNotFoundResult();
 

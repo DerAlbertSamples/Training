@@ -24,7 +24,7 @@ namespace Training.Web.Controllers
                     personen = personen.Order(p => p.Nachname, direction);
                     break;
             }
-            return View(personen);
+            return View(personen.ToArray());
         }
 
         public ActionResult Create()
