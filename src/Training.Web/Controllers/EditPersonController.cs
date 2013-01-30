@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Training.Web.Data;
@@ -18,25 +17,16 @@ namespace Training.Web.Controllers
             switch (property)
             {
                 case "Anrede":
-                    personen = Order(personen, p => p.Anrede, direction);
+                    personen = personen.Order(p => p.Anrede, direction);
                     break;
                 case "Vorname":
-                    personen = Order(personen, p => p.Vorname, direction);
+                    personen = personen.Order(p => p.Vorname, direction);
                     break;
                 case "Nachname":
-                    personen = Order(personen, p => p.Nachname, direction);
+                    personen = personen.Order(p => p.Nachname, direction);
                     break;
             }
             return View(personen);
-        }
-
-        static IEnumerable<Person> Order(IEnumerable<Person> personen,
-                                         Func<Person, string> selector,
-                                         string direction)
-        {
-            return direction == "asc"
-                       ? personen.OrderBy(selector)
-                       : personen.OrderByDescending(selector);
         }
 
         public ActionResult Create()

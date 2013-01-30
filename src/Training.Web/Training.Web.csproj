@@ -164,6 +164,7 @@
     <Compile Include="Data\EntityCollection.cs" />
     <Compile Include="Data\EntityStore.cs" />
     <Compile Include="Data\IdGenerator.cs" />
+    <Compile Include="Data\DataExtensions.cs" />
     <Compile Include="Entities\Abteilung.cs" />
     <Compile Include="Entities\Adresse.cs" />
     <Compile Include="Entities\Contact.cs" />
