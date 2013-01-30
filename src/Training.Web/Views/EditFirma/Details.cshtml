@@ -1,0 +1,51 @@
+﻿@model Firma
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Firma</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Name1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name1)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Name2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name2)
+    </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Abteilungen)
+    </div>
+    <div class="display-field">
+        <ul>
+            @foreach (var abteilung in Model.Abteilungen)
+            {
+                <li>@abteilung.Name
+
+                    @if (abteilung.Personen.Any())
+                    {
+                        <ol>
+                            @foreach (var person in abteilung.Personen)
+                            {
+                                <li>@Html.ActionLink(person.Nachname + ", " + person.Vorname, "Details", "EditPerson", new {id = person.Id}, null)</li>
+                            }
+                        </ol>
+                    }
+                </li>
+            }   
+        </ul>
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {id = Model.Id}) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

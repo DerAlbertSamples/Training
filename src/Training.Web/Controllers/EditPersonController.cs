@@ -6,13 +6,11 @@ using Training.Web.Entities;
 
 namespace Training.Web.Controllers
 {
-    public class EditPersonController : Controller
+    public class EditPersonController : BaseController
     {
-        readonly TrainingContext context = new TrainingContext();
-
         public ActionResult Index(string property = null, string direction = "asc")
         {
-            var personen = context.Personen.AsQueryable();
+            var personen = DbContext.Personen.AsQueryable();
 
             switch (property)
             {
@@ -40,14 +38,16 @@ namespace Training.Web.Controllers
             if (!ModelState.IsValid)
                 return View(person);
 
-            context.Personen.Add(person);
+            DbContext.Personen.Add(person);
+            DbContext.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
 
         Person FindPerson(int id)
         {
-            return context.Personen.SingleOrDefault(p => p.Id == id);
+            return DbContext.Personen.SingleOrDefault(p => p.Id == id);
         }
 
         public ActionResult Edit(int id)
@@ -71,7 +71,7 @@ namespace Training.Web.Controllers
             person.Anrede = model.Anrede;
             person.Vorname = model.Vorname;
             person.Nachname = model.Nachname;
-            context.SaveChanges();
+            DbContext.SaveChanges();
 
             return RedirectToAction("Index");
         }
@@ -100,7 +100,8 @@ namespace Training.Web.Controllers
             if (person == null)
                 return new HttpNotFoundResult();
 
-            context.Personen.Remove(person);
+            DbContext.Personen.Remove(person);
+            DbContext.SaveChanges();
             return RedirectToAction("Index");
         }
     }
