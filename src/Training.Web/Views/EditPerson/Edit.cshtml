@@ -50,4 +50,13 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(function() {
+            if ($("input.input-validation-error").length == 0) {
+                $("input[type=text]").first().focus();
+            } else {
+                $("input.input-validation-error").first().focus();
+            }
+        });
+    </script>
 }
