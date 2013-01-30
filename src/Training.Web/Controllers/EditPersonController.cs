@@ -8,9 +8,12 @@ namespace Training.Web.Controllers
 {
     public class EditPersonController : Controller
     {
+        readonly TrainingContext context = new TrainingContext();
+
         public ActionResult Index(string property = null, string direction = "asc")
         {
-            var personen = EntityStore.Current.Personen;
+            var personen = context.Personen.AsQueryable();
+
             switch (property)
             {
                 case "Anrede":
@@ -37,14 +40,14 @@ namespace Training.Web.Controllers
             if (!ModelState.IsValid)
                 return View(person);
 
-            EntityStore.Current.Add(person);
+            context.Personen.Add(person);
             return RedirectToAction("Index");
         }
 
 
         Person FindPerson(int id)
         {
-            return EntityStore.Current.Personen.SingleOrDefault(p => p.Id == id);
+            return context.Personen.SingleOrDefault(p => p.Id == id);
         }
 
         public ActionResult Edit(int id)
@@ -68,12 +71,14 @@ namespace Training.Web.Controllers
             person.Anrede = model.Anrede;
             person.Vorname = model.Vorname;
             person.Nachname = model.Nachname;
+            context.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
         public ActionResult Details(int id)
         {
-            var person = EntityStore.Current.Personen.SingleOrDefault(p => p.Id == id);
+            var person = FindPerson(id);
             if (person == null)
                 return new HttpNotFoundResult();
             return View(person);
@@ -95,7 +100,7 @@ namespace Training.Web.Controllers
             if (person == null)
                 return new HttpNotFoundResult();
 
-            EntityStore.Current.Remove(person);
+            context.Personen.Remove(person);
             return RedirectToAction("Index");
         }
     }

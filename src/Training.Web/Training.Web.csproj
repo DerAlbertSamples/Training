@@ -155,16 +155,16 @@
   <ItemGroup>
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\DatabaseConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\EditPersonController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Data\DataSeeder.cs" />
-    <Compile Include="Data\EntityCollection.cs" />
-    <Compile Include="Data\EntityStore.cs" />
-    <Compile Include="Data\IdGenerator.cs" />
     <Compile Include="Data\DataExtensions.cs" />
+    <Compile Include="Data\DataSeeder.cs" />
+    <Compile Include="Data\TrainingContext.cs" />
+    <Compile Include="Data\TrainingInitializer.cs" />
     <Compile Include="Entities\Abteilung.cs" />
     <Compile Include="Entities\Adresse.cs" />
     <Compile Include="Entities\Contact.cs" />
