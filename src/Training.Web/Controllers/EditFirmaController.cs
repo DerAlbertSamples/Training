@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Data.Entity;
-using System.Linq;
 using System.Web.Mvc;
+using System.Linq;
 using Training.Web.Entities;
+using Training.Web.Extensions;
+using Training.Web.Models;
 
 namespace Training.Web.Controllers
 {
@@ -10,23 +12,24 @@ namespace Training.Web.Controllers
     {
         public ActionResult Index()
         {
-            return View(DbContext.Firmen.ToArray());
+            return View(DbContext.Firmen.Project().ToArray<EditFirmaIndexModel>());
         }
 
         public ActionResult Create()
         {
-            return View(new Firma());
+            return View(new EditFirmaCreateModel());
         }
 
         [HttpPost]
-        public ActionResult Create(Firma model)
+        public ActionResult Create(EditFirmaCreateModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
 
-            DbContext.Firmen.Add(model);
+            var firma = model.MapTo<Firma>();
+            DbContext.Firmen.Add(firma);
             DbContext.SaveChanges();
-            return RedirectToAction("Details", new {model.Id});
+            return RedirectToAction("Details", new {firma.Id});
         }
 
         Firma FindFirma(int id)
@@ -34,22 +37,24 @@ namespace Training.Web.Controllers
             return DbContext.Firmen.SingleOrDefault(f => f.Id == id);
         }
 
-        Firma FindFirmaComplete(int id)
+        EditFirmaDetailsModel FindFirmaComplete(int id)
         {
-            return DbContext.Firmen.Include("Abteilungen.Personen").SingleOrDefault(f => f.Id == id);
+            return
+                DbContext.Firmen.Include("Abteilungen.Personen")
+                         .SingleOrDefault(f => f.Id == id)
+                         .MapTo<EditFirmaDetailsModel>();
         }
-
         public ActionResult Edit(int id)
         {
             var firma = FindFirma(id);
             if (firma == null)
                 return new HttpNotFoundResult();
 
-            return View(firma);
+            return View(firma.MapTo<EditFirmaEditModel>());
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, Firma model)
+        public ActionResult Edit(int id, EditFirmaEditModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
@@ -57,8 +62,8 @@ namespace Training.Web.Controllers
             var firma = FindFirma(id);
             if (firma == null)
                 return new HttpNotFoundResult();
+            model.MapTo(firma);
 
-            UpdateModel(firma);
             DbContext.SaveChanges();
             return RedirectToAction("Details", new {id});
         }
@@ -66,10 +71,11 @@ namespace Training.Web.Controllers
         public ActionResult Details(int id)
         {
             var firma = FindFirmaComplete(id);
+
             if (firma == null)
                 return new HttpNotFoundResult();
 
-            return View(firma);
+            return View(firma.MapTo<EditFirmaDetailsModel>());
         }
 
         public ActionResult Delete(int id)
@@ -78,7 +84,7 @@ namespace Training.Web.Controllers
             if (firma == null)
                 return new HttpNotFoundResult();
 
-            return View(firma);
+            return View(firma.MapTo<EditFirmaDeleteModel>());
         }
 
         [HttpPost]

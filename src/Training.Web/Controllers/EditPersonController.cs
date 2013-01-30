@@ -71,9 +71,8 @@ namespace Training.Web.Controllers
             if (person == null)
                 return new HttpNotFoundResult();
 
-            person.Anrede = model.Anrede;
-            person.Vorname = model.Vorname;
-            person.Nachname = model.Nachname;
+            model.MapTo(person);
+
             DbContext.SaveChanges();
 
             return RedirectToAction("Index");

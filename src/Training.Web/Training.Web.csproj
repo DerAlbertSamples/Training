@@ -185,8 +185,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Mappings\ComponentMappingProfile.cs" />
+    <Compile Include="Infrastructure\Mappings\FirmaMappingProfile.cs" />
     <Compile Include="Infrastructure\Mappings\PersonMappingProfile.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\EditFirma\EditFirmaCreateModel.cs" />
+    <Compile Include="Models\EditFirma\EditFirmaDeleteModel.cs" />
+    <Compile Include="Models\EditFirma\EditFirmaDetailsModel.cs" />
+    <Compile Include="Models\EditFirma\EditFirmaEditModel.cs" />
+    <Compile Include="Models\EditFirma\EditFirmaIndexModel.cs" />
     <Compile Include="Models\EditPerson\EditPersonCreateModel.cs" />
     <Compile Include="Models\EditPerson\EditPersonDeleteModel.cs" />
     <Compile Include="Models\EditPerson\EditPersonDetailsModel.cs" />
