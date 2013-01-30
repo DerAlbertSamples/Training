@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using Training.Web.Data;
 
@@ -23,7 +24,10 @@ namespace Training.Web.Controllers
 
         public ActionResult Details(int id)
         {
-            throw new NotImplementedException();
+            var person = EntityStore.Current.Personen.SingleOrDefault(p => p.Id == id); 
+            if (person == null)
+                return new HttpNotFoundResult();
+            return View(person);
         }
 
         public ActionResult Delete(int id)
